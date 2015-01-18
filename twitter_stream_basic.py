@@ -3,15 +3,14 @@ from tweepy import OAuthHandler
 from tweepy import StreamListener
 import time
 
-ckey = "qxkEHQtFppP6zXuRjDBrIDnoz"
-csecret = "kffY6ZuqTh9j9du6BHDGcjkxuUC2fYOrxC0dKONskhxyXIdppT"
-atoken = "1612285206-XgJ65gHtw2FjA5wQLGLsZx7Ew1EI0sfi5YLoFgF"
-atoksec = "D9ZEXZDZs540oBpgnOVSjVYLimvd6bXgzAKzRQBuRF9iK"
+ckey = "your customer key"
+csecret = "your customer key secret"
+atoken = "your access token"
+atoksec = "your access token secret"
 
 class listener(StreamListener):
 
     def on_data(self,data):
-
         try:
             #print data
 
@@ -31,4 +30,3 @@ auth = OAuthHandler(ckey,csecret)
 auth.set_access_token(atoken,atoksec)
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["interstellar"])
-

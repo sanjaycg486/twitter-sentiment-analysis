@@ -2,11 +2,14 @@ from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy import StreamListener
 import time
+from nltk import *
 
 ckey = "your customer key"
 csecret = "your customer key secret"
 atoken = "your access token"
 atoksec = "your access token secret"
+
+keyword = raw_input("Enter the keyword to search: ")
 
 class listener(StreamListener):
 
@@ -16,6 +19,9 @@ class listener(StreamListener):
 
             tweet = data.split(',"text":"')[1].split('","source')[0]
             print tweet
+            stat_token = word_tokenize(tweet)
+            stat_pos = pos_tag(stat_token)            
+            print stat_pos
             return True
         
 
@@ -29,4 +35,5 @@ class listener(StreamListener):
 auth = OAuthHandler(ckey,csecret)
 auth.set_access_token(atoken,atoksec)
 twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["interstellar"])
+
+twitterStream.filter(track=[keyword])

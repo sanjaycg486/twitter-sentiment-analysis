@@ -71,8 +71,8 @@ def search(keyword):
             if i == 11: #enter number of tweets you want
                 break
 
-        total_tweet = neutral_count+pos_count+neg_count
-        print neutral_count, pos_count, neg_count, total_tweet            
+        total_tweet = neutral_count+pos_count+neg_count 
+        print neutral_count, pos_count, neg_count, total_tweet #prints number of positive, negative, neutral, tweets            
         
 
     except TwitterSearchException as e:

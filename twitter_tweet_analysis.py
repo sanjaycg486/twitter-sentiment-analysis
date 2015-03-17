@@ -40,6 +40,8 @@ def search(keyword):
                     pos_word = cur.execute("SELECT positive_word from Word where positive_word = ?", (word.lower(),))
                     if pos_word.fetchone()[0] == word:        #if word is in database
                         pos_score +=1
+                    else:
+                        pos_score = 0
                     except TypeError: #continue if error
                     continue
 
@@ -48,6 +50,7 @@ def search(keyword):
                     neg_word = cur.execute("SELECT negative_word from Word where negative_word = ?", (word.lower(),))
                     if neg_word.fetchone()[0] == word:
                         neg_score -=1
+                    else neg_score = 0
                 except TypeError:
                     continue
 

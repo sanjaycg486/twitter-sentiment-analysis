@@ -27,7 +27,7 @@ def search(keyword):
         total_pos_score = 0
         total_neg_score = 0
     
-""" set TwitterSearch parameters"""
+        """ set TwitterSearch parameters"""
 
         tso.set_keywords([keyword])
         tso.set_language('en')
@@ -47,7 +47,7 @@ def search(keyword):
                     else:
                          pos_rand_var = 0
                     total_pos_score = pos_rand_var + pos_score 
-                    except TypeError: #continue if error
+                except TypeError: #continue if error
                     continue
 
             for word in statement.split():

@@ -22,6 +22,10 @@ def search(keyword):
         neutral_count = 0
         pos_count = 0
         neg_count = 0
+        pos_rand_var = 0
+        neg_rand_var = 0
+        total_pos_score = 0
+        total_neg_score = 0
     
 """ set TwitterSearch parameters"""
 
@@ -41,7 +45,8 @@ def search(keyword):
                     if pos_word.fetchone()[0] == word:        #if word is in database
                         pos_score +=1
                     else:
-                        pos_score = 0
+                         pos_rand_var = 0
+                    total_pos_score = pos_rand_var + pos_score 
                     except TypeError: #continue if error
                     continue
 
@@ -50,27 +55,26 @@ def search(keyword):
                     neg_word = cur.execute("SELECT negative_word from Word where negative_word = ?", (word.lower(),))
                     if neg_word.fetchone()[0] == word:
                         neg_score -=1
-                    else neg_score = 0
+                    else:
+                        neg_rand_var = 0
+                    total_neg_score = neg_rand_var + neg_score 
                 except TypeError:
                     continue
 
 
-
-            if pos_score == 0 and neg_score == 0:
+            if total_pos_score == 0 and total_neg_score == 0:
                 neutral_count +=1
                 print statement, "\n------>Statement is neutral."
 
-            elif pos_score>=1 and neg_score==0:
+            elif total_pos_score>=1 and total_neg_score==0:
                 pos_count +=1
+                
                 print statement, "\n------>Statement is positive."
                 
-            elif pos_score>=1 and (neg_score==-1 or neg_score ==-3):
+            elif total_pos_score>=1 and (total_neg_score==-1 or total_neg_score ==-3):
                 neg_count+=1
                 print statement, "\n------>Statement is negative."
-                
-            elif neg_score !=0 and neg_score%2 == 0:
-                pos_count +=1
-                print statement, "\n------>statement is positive."
+
                         
             i+=1
             if i == 11: #enter number of tweets you want

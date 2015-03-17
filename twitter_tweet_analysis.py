@@ -1,5 +1,7 @@
 from TwitterSearch import * #import twittersearch module
 
+tso = TwitterSearchOrder()
+
 ckey = "your customer key"
 csecret = "your customer key secret"
 atoken = "your access token"

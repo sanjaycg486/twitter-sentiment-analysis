@@ -71,7 +71,7 @@ def search(keyword):
                 
                 print statement, "\n------>Statement is positive."
                 
-            elif total_pos_score>=1 and (total_neg_score==-1 or total_neg_score ==-3):
+            elif total_pos_score<= total_neg_score and (total_neg_score==-1 or total_neg_score ==-3):
                 neg_count+=1
                 print statement, "\n------>Statement is negative."
 
